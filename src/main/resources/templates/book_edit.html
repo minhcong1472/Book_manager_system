@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+head>
+<meta charset="utf-8">
+<title>Web của tui</title>
+<script type="text/javascript">
+         function validateForm()  {
+             alert("Sửa sách thành công !!")
+             return true;
+         }
+      </script>
+<br>
+<br>
+<br>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#" th:href="@{/}">Trang chủ</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Đăng
+						xuất</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</head>
+<body>
+
+	<br>
+	<br>
+
+	<form action="#" th:action="@{/saveBook}" th:object="${book}"
+		method="post" onsubmit="return validateForm()">
+		<table align="center" class="table table-bordered table-hover">
+			<tr>
+				<input class="form-control" type="hidden" th:field="*{book_id}"
+					readonly="readonly" />
+			</tr>
+			<tr>
+				<td for="validationServer01" class="form-label">BOOK TITLE</td>
+				<td><input class="form-control" type="text"
+					id="validationServer01" required th:field="*{book_title}"></td>
+
+
+			</tr>
+			<tr>
+				<td for="validationCustom02" class="form-label">AUTHOR</td>
+				<td><input class="form-control" type="text"
+					id="validationCustom02" required th:field="*{author}"></td>
+
+			</tr>
+			<tr>
+				<td for="validationDefault03" class="form-label">BRIEF</td>
+				<td><input class="form-control" type="text"
+					id="validationDefault01" required th:field="*{brief}"></td>
+
+			</tr>
+			<tr>
+				<td for="validationServer01" class="form-label">PUBLISHER</td>
+				<td><input class="form-control" type="text"
+					id="validationServer01" required th:field="*{publisher}"></td>
+
+			</tr>
+
+			<tr>
+				<td for="validationServer01" class="form-label">CONTENT</td>
+				<td><input class="form-control" type="text"
+					id="validationServer01" required th:field="*{content}"></td>
+
+			</tr>
+
+			<tr>
+				<td for="validationServer01" class="form-label">CATEGORY</td>
+				<td><input class="form-control" type="text"
+					id="validationServer01" required th:field="*{category}"></td>
+			</tr>
+
+
+		</table>
+
+		<div>
+			<td><button class="btn btn-primary btn-lg btn-block"
+					type="submit">Save</td>
+
+		</div>
+		<div>
+			<a class="btn btn-primary btn-lg btn-block" href="/book">Back</a>
+		</div>
+		<script>
+		function goBack() {
+ 	 	window.history.back();
+				}
+		</script>
+	</form>
+</body>
+</html>

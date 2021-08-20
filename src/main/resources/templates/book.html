@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Web của tui</title>
+<br>
+<br>
+<br>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#" th:href="@{/}">Trang chủ</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Đăng
+						xuất</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+</head>
+<body>
+	<!-- create navigation bar ( header) -->
+
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div align="center">
+			<form th:action="@{/book}">
+				Thanh tìm kiếm : <input type="text" name="keyword"
+					th:value="${keyword}" required />&nbsp; <input type="submit"
+					value="Tìm kiếm" /> &nbsp; <input type="button" value="Xem tất cả"
+					onclick="clearFilter()" />
+			</form>
+		</div>
+		<br> <br>
+		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<a href="/newBook" class="btn btn-primary"> <span
+				class="glyphicon glyphicon-plus"></span> Create Book
+			</a>
+		</th:block>
+		<table align="center" class="table table-bordered table-hover">
+
+			<tr>
+				<th>Book ID</th>
+				<th>Book Title</th>
+				<th>Author</th>
+				<th>Categoty</th>
+				<th>Thao Tác</th>
+			</tr>
+
+			<tbody>
+				<tr th:each="book:${listbook}">
+					<td th:text="${book.book_id}"></td>
+					<td th:text="${book.book_title}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.category}"></td>
+					<td><th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+							<a th:href="@{/edit/} + ${book.book_id}"><button
+									class="btn btn-primary">Edit</button></a>
+						</th:block> <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+							<a th:href="@{/delete/} + ${book.book_id}"><button
+									class="btn btn-danger" Onclick="return ConfirmDelete();">Delete</button></a>
+						</th:block> <a th:href="@{/view/} + ${book.book_id}"><button
+								class="btn btn-info">View</button></a>
+			</tbody>
+
+		</table>
+		<script>
+			function ConfirmDelete() {
+				var x = confirm("Bạn có chắc muốn xóa quyền sách này?");
+				if (x)
+					return true;
+				else
+					return false;
+			}
+		</script>
+		<script type="text/javascript">
+			function clearFilter() {
+				window.location = '/book';
+			}
+		</script>
+</body>
+</html>
