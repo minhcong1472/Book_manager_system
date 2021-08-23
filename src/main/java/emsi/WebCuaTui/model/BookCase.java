@@ -50,6 +50,12 @@ public class BookCase {
 		this.books = books;
 	}
 
+	public BookCase(String book_case_name) {
+		super();
+		this.book_case_name = book_case_name;
+	}
+
+
 	public Long getBook_case_id() {
 		return book_case_id;
 	}

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import emsi.WebCuaTui.model.BookCase;
 import emsi.WebCuaTui.model.Role;
 import emsi.WebCuaTui.model.User;
 import emsi.WebCuaTui.repository.UserRepository;
@@ -32,10 +33,13 @@ private UserRepository userRepository;
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
 		User user = new User(registrationDto.getEmail(),
-				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
+				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")) );
+		
 		
 		return userRepository.save(user);
 	}
+	
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -40,15 +40,14 @@ public class BookCaseController {
 		User user = userRepo.findByEmail(au.getUsername());
 		BookCase bookcase = new BookCase();
 		bookcase = bcRepo.findByUser(user);
-		bookcase.getBooks().forEach(bc -> System.out.println(bc));
+		bookcase.getBooks().forEach(s -> System.out.println(s));
 		List<Book> listbookcase = new ArrayList<Book>(bookcase.getBooks());
 		model.addAttribute("listbookcase", listbookcase);
 		return "book_case";
 	}
 
 	@GetMapping("/add/{book_id}")
-	public String addBook(@PathVariable(name = "book_id") Long book_id) {
-//		ModelAndView mav = new ModelAndView("book");
+	public ModelAndView addBook(@PathVariable(name = "book_id") Long book_id) {
 		Book book = bookRepo.findById(book_id).orElse(null);
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -60,7 +59,7 @@ public class BookCaseController {
 		bookcase = bcRepo.findByUser(user);
 		bookcase.getBooks().add(book);
 		bcRepo.save(bookcase);
-		return "book_case";
+		return new ModelAndView("redirect:/bookcase");
 	}
 
 }
