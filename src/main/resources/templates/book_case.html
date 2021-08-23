@@ -55,15 +55,19 @@
 	<table align="center" class="table table-bordered table-hover">
 
 		<tr>
-			<th>Book Case name</th>
-			<th>Book Info</th>
-			<th>Thao Tác</th>
-		</tr>
+		<th>Book ID</th>
+				<th>Book Title</th>
+				<th>Author</th>
+				<th>Categoty</th>
+				<th>Thao Tác</th>		</tr>
 
 		<tbody>
-			<tr th:each="bookcase:${listbookcase}">
-				<td th:text="${bookcase.book_case_name}"></td>
-				<td th:text="${bookcase.books}"></td>
+			<tr th:each="book:${listbookcase}">
+					<td th:text="${book.book_id}"></td>
+					<td th:text="${book.book_title}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.category}"></td>
+					
 		</tbody>
 
 	</table>

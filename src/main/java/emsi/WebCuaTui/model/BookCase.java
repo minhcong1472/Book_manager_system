@@ -29,7 +29,7 @@ public class BookCase {
 	private String book_case_name;
 	
 	@OneToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="id")
 	private User user;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
@@ -37,13 +37,10 @@ public class BookCase {
 	joinColumns = @JoinColumn(name="book_case_id"),
 	inverseJoinColumns = @JoinColumn(name="book_id"))
 	private Set<Book> books = new HashSet<>();
-	
-
-	
+		
 	public BookCase() {
 	}
 
-	
 
 	public BookCase(Long book_case_id, String book_case_name, User user,Set<Book> books) {
 		super();

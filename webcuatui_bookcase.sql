@@ -25,11 +25,12 @@ DROP TABLE IF EXISTS `bookcase`;
 CREATE TABLE `bookcase` (
   `book_case_id` int NOT NULL AUTO_INCREMENT,
   `book_case_name` varchar(45) NOT NULL,
-  `user_id` bigint DEFAULT NULL,
+  `id` bigint DEFAULT NULL,
   PRIMARY KEY (`book_case_id`),
-  KEY `FK_bookcase_user_idx` (`user_id`),
-  CONSTRAINT `FK_bookcase_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `user_id_UNIQUE` (`id`),
+  KEY `FK_bookcase_user_idx` (`id`),
+  CONSTRAINT `FK6bwr7q9yilf7gt2yhs3tkvc43` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +39,7 @@ CREATE TABLE `bookcase` (
 
 LOCK TABLES `bookcase` WRITE;
 /*!40000 ALTER TABLE `bookcase` DISABLE KEYS */;
-INSERT INTO `bookcase` VALUES (1,'Sach hoc tap',1),(2,'Sach Truyen',2);
+INSERT INTO `bookcase` VALUES (1,'Book case of jinjnguyen147',1),(2,'Book case of jinjnguyen1472',2),(4,'Book case of cong',3),(5,'Book case of admin',4),(6,'Book case of admin1',5),(7,'Book case of cong111',6),(8,'Book case of admin2',9),(9,'as',11);
 /*!40000 ALTER TABLE `bookcase` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-20 14:00:49
+-- Dump completed on 2021-08-23 20:35:26

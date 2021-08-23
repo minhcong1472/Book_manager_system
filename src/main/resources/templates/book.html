@@ -83,6 +83,10 @@
 									class="btn btn-danger" Onclick="return ConfirmDelete();">Delete</button></a>
 						</th:block> <a th:href="@{/view/} + ${book.book_id}"><button
 								class="btn btn-info">View</button></a>
+								
+							<a th:href="@{/add/} + ${book.book_id}"><button
+									class="btn btn-success">Add BookCase</button></a>
+						
 			</tbody>
 
 		</table>
