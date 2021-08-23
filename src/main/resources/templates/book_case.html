@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
-head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <title>Web của tui</title>
 <br>
@@ -10,9 +11,6 @@ head>
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-
-<link href="../static/style.css" th:href="@{/style.css}"
-	rel="stylesheet" />
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -33,43 +31,42 @@ head>
 				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
 				</li>
 				<li sec:authorize="isAuthenticated()"><a href="bookcase">BookCase</a>
-					</li>
-
+				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
 </head>
 <body>
+	<!-- create navigation bar ( header) -->
+	<div class="form-control" align="center">
+
+		Book case of <span sec:authentication="principal.username">
+			User</span>
+	</div>
+
+	<br>
+	<br>
 
 
 	<br>
 	<br>
-	<h2>View Book</h2>
-	<form th:object="${book}">
+
+	<table align="center" class="table table-bordered table-hover">
 
 		<tr>
-			<td>BOOK TITLE</td>
-			<td><textarea textarea id="note" class="form-control"
-					type="text" th:field="*{book_title}" readonly></textarea></td>
-
+			<th>Book Case name</th>
+			<th>Book Info</th>
+			<th>Thao Tác</th>
 		</tr>
 
-		<tr>
-			<td>CONTENT</td>
-			<td><textarea textarea id="note1" class="form-control"
-					type="text" th:field="*{content}" readonly></textarea></td>
+		<tbody>
+			<tr th:each="bookcase:${listbookcase}">
+				<td th:text="${bookcase.book_case_name}"></td>
+				<td th:text="${bookcase.books}"></td>
+		</tbody>
 
-		</tr>
-		</br> </br> 
-		<div>
-			<a class="btn btn-primary btn-lg btn-block" href="/book">Back</a>
-		</div>
-
-
-
-	</form>
-
+	</table>
+	
 </body>
-
 </html>

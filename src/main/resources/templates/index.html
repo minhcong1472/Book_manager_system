@@ -30,6 +30,8 @@
 					</li>
 					<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
 					</li>
+					<li sec:authorize="isAuthenticated()"><a href="bookcase">BookCase</a>
+					</li>
 					
 					
 				</ul>
@@ -44,10 +46,11 @@
 	<br>
 	<br>
 
-	<div class="container">
+	<div class="form-control">
 		
 		Chào mừng <span sec:authentication="principal.username"> User</span>
 	</div>
+	
 	
 	
 </body>

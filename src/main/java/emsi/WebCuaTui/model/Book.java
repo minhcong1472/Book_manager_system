@@ -105,5 +105,9 @@ public class Book {
 		this.category = category;
 	}
 
+	@Override
+	public String toString() {
+		return " id:"+ book_id +" , Tên truyện : "+ book_title +" ";
+	}
 	
 }
