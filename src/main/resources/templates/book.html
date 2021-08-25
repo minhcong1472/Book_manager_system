@@ -26,12 +26,12 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Đăng
-						xuất</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"
+					Onclick="return ConfirmLogout();">Đăng xuất</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
 				</li>
 				<li sec:authorize="isAuthenticated()"><a href="bookcase">BookCase</a>
-					</li>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -82,17 +82,24 @@
 							<a th:href="@{/delete/} + ${book.book_id}"><button
 									class="btn btn-danger" Onclick="return ConfirmDelete();">Delete</button></a>
 						</th:block> <a th:href="@{/view/} + ${book.book_id}"><button
-								class="btn btn-info">View</button></a>
-								
-							<a th:href="@{/add/} + ${book.book_id}"><button
-									class="btn btn-success">Add BookCase</button></a>
-						
+								class="btn btn-info">View</button></a> <a
+						th:href="@{/add/} + ${book.book_id}"><button
+								class="btn btn-success">Add to BookCase</button></a>
 			</tbody>
 
 		</table>
 		<script>
 			function ConfirmDelete() {
 				var x = confirm("Bạn có chắc muốn xóa quyền sách này?");
+				if (x)
+					return true;
+				else
+					return false;
+			}
+		</script>
+		<script>
+			function ConfirmLogout() {
+				var x = confirm("Bạn có chắc muốn đăng xuất?");
 				if (x)
 					return true;
 				else

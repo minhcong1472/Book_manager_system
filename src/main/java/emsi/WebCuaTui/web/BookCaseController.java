@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import emsi.WebCuaTui.model.Book;
@@ -30,6 +31,9 @@ public class BookCaseController {
 
 	@Autowired
 	BookRepositoty bookRepo;
+	
+//	@Autowired
+//	BookService bookService;
 
 	@GetMapping("/bookcase")
 	public String showBookCase(Model model) {
@@ -42,6 +46,7 @@ public class BookCaseController {
 		bookcase = bcRepo.findByUser(user);
 		bookcase.getBooks().forEach(s -> System.out.println(s));
 		List<Book> listbookcase = new ArrayList<Book>(bookcase.getBooks());
+		
 		model.addAttribute("listbookcase", listbookcase);
 		return "book_case";
 	}
@@ -53,13 +58,43 @@ public class BookCaseController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		org.springframework.security.core.userdetails.User au = (org.springframework.security.core.userdetails.User) authentication
 				.getPrincipal();
-
 		User user = userRepo.findByEmail(au.getUsername());
 		BookCase bookcase = new BookCase();
 		bookcase = bcRepo.findByUser(user);
 		bookcase.getBooks().add(book);
 		bcRepo.save(bookcase);
-		return new ModelAndView("redirect:/bookcase");
+		return new ModelAndView("redirect:/book");
 	}
 
+	@RequestMapping("/removebook/{book_id}")
+	public String removeBookInCart(@PathVariable(name="book_id")Long book_id ) {
+		Book book = bookRepo.findById(book_id).orElse(null);
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		org.springframework.security.core.userdetails.User au = (org.springframework.security.core.userdetails.User) authentication
+				.getPrincipal();
+		User user = userRepo.findByEmail(au.getUsername());
+		BookCase bookcase = new BookCase();
+		bookcase = bcRepo.findByUser(user);
+		bookcase.getBooks().remove(book);
+		bcRepo.save(bookcase);
+		return "redirect:/bookcase";
+		
+	}
+	@GetMapping("/clear")
+	public String clearCart() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		org.springframework.security.core.userdetails.User au = (org.springframework.security.core.userdetails.User) authentication
+				.getPrincipal();
+		User user = userRepo.findByEmail(au.getUsername());
+		BookCase bookcase = new BookCase();
+		bookcase = bcRepo.findByUser(user);
+		bookcase.getBooks().clear();
+		bcRepo.save(bookcase);
+		
+		
+		return "redirect:/bookcase";
+		
+	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
@@ -32,6 +33,10 @@ public class User {
 	inverseJoinColumns = @JoinColumn( name = "role_id", referencedColumnName = "id"))
 	private Collection<Role> roles;
 	
+//	@OneToOne
+//	@JoinTable(name="bookcase",joinColumns = @JoinColumn(name="id"))
+//	private Collection<BookCase> bookcases;
+	
 	public User() {
 		
 	}
@@ -42,6 +47,7 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.roles = roles;
+//		this.bookcases = bookcases;
 	}
 	public Long getId() {
 		return id;
@@ -68,6 +74,14 @@ public class User {
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
+
+//	public Collection<BookCase> getBookcases() {
+//		return bookcases;
+//	}
+//
+//	public void setBookcases(Collection<BookCase> bookcases) {
+//		this.bookcases = bookcases;
+//	}
 
 	
 }

@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import emsi.WebCuaTui.model.BookCase;
 import emsi.WebCuaTui.model.Role;
 import emsi.WebCuaTui.model.User;
 import emsi.WebCuaTui.repository.UserRepository;
@@ -55,4 +54,7 @@ private UserRepository userRepository;
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
 
+//	private Collection<? extends GrantedAuthority> mapBookCasesToAuthorities(Collection<BookCase> bookcases){
+//		return bookcases.stream().map(bookcase -> new SimpleGrantedAuthority(bookcase.getBook_case_name())).collect(Collectors.toList());
+//	}
 }

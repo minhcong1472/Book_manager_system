@@ -1,11 +1,13 @@
 package emsi.WebCuaTui.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import emsi.WebCuaTui.model.Book;
 import emsi.WebCuaTui.repository.BookRepositoty;
 
@@ -31,5 +33,10 @@ public class BookService {
 	}
 	public Book get(Long book_id) {
 		return repo.findById(book_id).get();
+	}
+	
+	public Optional<Book> getBookByID(Long book_id){
+		return repo.findById(book_id);
+		
 	}
 }

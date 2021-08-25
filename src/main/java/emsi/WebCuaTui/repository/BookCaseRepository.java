@@ -14,4 +14,5 @@ public interface BookCaseRepository extends JpaRepository<BookCase, Long> {
 	BookCase findByUser(User user);
 	
 //	List<BookCase> findByBook_case_id(Long book_case_id);
+	
 }

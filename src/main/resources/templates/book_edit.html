@@ -30,12 +30,12 @@ head>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Đăng
-						xuất</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"
+					Onclick="return ConfirmLogout();">Đăng xuất</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
 				</li>
 				<li sec:authorize="isAuthenticated()"><a href="bookcase">BookCase</a>
-					</li>
+				</li>
 
 			</ul>
 		</div>
@@ -84,7 +84,6 @@ head>
 				<td for="validationServer01" class="form-label">CONTENT</td>
 				<td><input class="form-control" type="text"
 					id="validationServer01" required th:field="*{content}"></td>
-
 			</tr>
 
 			<tr>
@@ -92,14 +91,11 @@ head>
 				<td><input class="form-control" type="text"
 					id="validationServer01" required th:field="*{category}"></td>
 			</tr>
-
-
 		</table>
 
 		<div>
 			<td><button class="btn btn-primary btn-lg btn-block"
 					type="submit">Save</td>
-
 		</div>
 		<div>
 			<a class="btn btn-primary btn-lg btn-block" href="/book">Back</a>
@@ -108,6 +104,15 @@ head>
 		function goBack() {
  	 	window.history.back();
 				}
+		</script>
+		<script>
+			function ConfirmLogout() {
+				var x = confirm("Bạn có chắc muốn đăng xuất?");
+				if (x)
+					return true;
+				else
+					return false;
+			}
 		</script>
 	</form>
 </body>

@@ -28,12 +28,12 @@ head>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Đăng
-						xuất</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"
+					Onclick="return ConfirmLogout();">Đăng xuất</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
 				</li>
 				<li sec:authorize="isAuthenticated()"><a href="bookcase">BookCase</a>
-					</li>
+				</li>
 
 			</ul>
 		</div>
@@ -41,8 +41,6 @@ head>
 </nav>
 </head>
 <body>
-
-
 	<br>
 	<br>
 	<h2>View Book</h2>
@@ -54,22 +52,25 @@ head>
 					type="text" th:field="*{book_title}" readonly></textarea></td>
 
 		</tr>
-
 		<tr>
 			<td>CONTENT</td>
 			<td><textarea textarea id="note1" class="form-control"
 					type="text" th:field="*{content}" readonly></textarea></td>
-
 		</tr>
-		</br> </br> 
+		</br> </br>
 		<div>
 			<a class="btn btn-primary btn-lg btn-block" href="/book">Back</a>
 		</div>
-
-
-
 	</form>
 
 </body>
-
+<script>
+	function ConfirmLogout() {
+		var x = confirm("Bạn có chắc muốn đăng xuất?");
+		if (x)
+			return true;
+		else
+			return false;
+	}
+</script>
 </html>
