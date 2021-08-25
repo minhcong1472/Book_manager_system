@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">>
 head>
 <meta charset="utf-8">
 <title>Web của tui</title>
@@ -49,6 +50,7 @@ head>
 
 	<form action="#" th:action="@{/saveBook}" th:object="${book}"
 		method="post" onsubmit="return validateForm()">
+		<div class="container">
 		<table align="center" class="table table-bordered table-hover">
 			<tr>
 				<input class="form-control" type="hidden" th:field="*{book_id}"

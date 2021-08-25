@@ -40,7 +40,6 @@
 <body>
 	<!-- create navigation bar ( header) -->
 	<div class="form-control" align="center">
-
 		Book case of <span sec:authentication="principal.username">
 			User</span>
 	</div>
@@ -48,35 +47,53 @@
 	<br>
 	<br>
 	<br>
-	<table align="center" class="table table-bordered table-hover">
-		<tr>
-			<th>Book ID</th>
-			<th>Book Title</th>
-			<th>Author</th>
-			<th>Categoty</th>
-			<th>Thao Tác</th>
-		</tr>
-		<tbody>
-			<tr th:each="book:${listbookcase}">
-				<td th:text="${book.book_id}"></td>
-				<td th:text="${book.book_title}"></td>
-				<td th:text="${book.author}"></td>
-				<td th:text="${book.category}"></td>
-				<td><a th:href="@{/removebook/} + ${book.book_id}"><button
-							class="btn btn-danger">remove</button></a></td>
-		</tbody>
-	</table>
-	<a th:href="@{/clear}" class="btn btn-primary"> <span
-				class="glyphicon glyphicon-plus"></span> clear bookcase
-			</a>
+	<div class="container">
+		<table align="center" class="table table-bordered table-hover">
+			<tr>
+				<th>Book ID</th>
+				<th>Book Title</th>
+				<th>Author</th>
+				<th>Categoty</th>
+				<th>Thao Tác</th>
+			</tr>
+			<tbody>
+				<tr th:each="book:${listbookcase}">
+					<td th:text="${book.book_id}"></td>
+					<td th:text="${book.book_title}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.category}"></td>
+					<td><a th:href="@{/removebook/} + ${book.book_id}"><button
+								class="btn btn-danger" Onclick="return ConfirmRemove();">Remove</button></a></td>
+			</tbody>
+		</table>
+		<a th:href="@{/clear}" class="btn btn-warning" Onclick="return ConfirmClearBookCase();" > Clear bookcase </a>
 </body>
-<script>
-			function ConfirmLogout() {
-				var x = confirm("Bạn có chắc muốn đăng xuất?");
+	<script>
+			function ConfirmRemove() {
+				var x = confirm("Bạn có chắc muốn xóa quyền sách này khỏi tủ sách?");
 				if (x)
 					return true;
 				else
 					return false;
 			}
 		</script>
+
+	<script>
+	function ConfirmLogout() {
+		var x = confirm("Bạn có chắc muốn đăng xuất?");
+		if (x)
+			return true;
+		else
+			return false;
+	}
+	</script>
+	<script>
+	function ConfirmClearBookCase() {
+		var x = confirm("Bạn có chắc muốn xóa toàn bộ sách khỏi tủ sách");
+		if (x)
+			return true;
+		else
+			return false;
+	}
+	</script>
 </html>
