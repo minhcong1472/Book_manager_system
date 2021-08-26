@@ -30,7 +30,7 @@
 					Onclick="return ConfirmLogout();">Đăng xuất</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="/book">Book</a>
 				</li>
-				<li sec:authorize="isAuthenticated()"><a href="bookcase">BookCase</a>
+				<li sec:authorize="isAuthenticated()"><a href="/bookcase">BookCase</a>
 				</li>
 			</ul>
 		</div>
@@ -66,7 +66,9 @@
 								class="btn btn-danger" Onclick="return ConfirmRemove();">Remove</button></a></td>
 			</tbody>
 		</table>
-		<a th:href="@{/clear}" class="btn btn-warning" Onclick="return ConfirmClearBookCase();" > Clear bookcase </a>
+		
+		<a th:href="@{/clear}" class="btn btn-warning "  Onclick="return ConfirmClearBookCase();" > Clear bookcase </a>
+		
 </body>
 	<script>
 			function ConfirmRemove() {

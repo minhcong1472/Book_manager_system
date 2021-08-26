@@ -31,10 +31,8 @@ public class BookCaseController {
 
 	@Autowired
 	BookRepositoty bookRepo;
-	
-//	@Autowired
-//	BookService bookService;
 
+	// show a bookcase with user
 	@GetMapping("/bookcase")
 	public String showBookCase(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -51,6 +49,7 @@ public class BookCaseController {
 		return "book_case";
 	}
 
+	// add a book to bookcase
 	@GetMapping("/add/{book_id}")
 	public ModelAndView addBook(@PathVariable(name = "book_id") Long book_id) {
 		Book book = bookRepo.findById(book_id).orElse(null);
@@ -66,6 +65,7 @@ public class BookCaseController {
 		return new ModelAndView("redirect:/book");
 	}
 
+	//remove book in bookcase
 	@RequestMapping("/removebook/{book_id}")
 	public String removeBookInCart(@PathVariable(name="book_id")Long book_id ) {
 		Book book = bookRepo.findById(book_id).orElse(null);
@@ -81,9 +81,9 @@ public class BookCaseController {
 		return "redirect:/bookcase";
 		
 	}
+	// clear bookcase
 	@GetMapping("/clear")
 	public String clearCart() {
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		org.springframework.security.core.userdetails.User au = (org.springframework.security.core.userdetails.User) authentication
 				.getPrincipal();
@@ -92,7 +92,6 @@ public class BookCaseController {
 		bookcase = bcRepo.findByUser(user);
 		bookcase.getBooks().clear();
 		bcRepo.save(bookcase);
-		
 		
 		return "redirect:/bookcase";
 		

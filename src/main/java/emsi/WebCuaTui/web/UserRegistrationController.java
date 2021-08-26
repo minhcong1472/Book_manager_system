@@ -25,11 +25,13 @@ public class UserRegistrationController {
         return new UserRegistrationDto();
     }
 	
+	// show register home form
 	@GetMapping
 	public String showRegistrationForm() {
 		return "registration";
 	}
 	
+	// save user
 	@PostMapping
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
